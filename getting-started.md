@@ -6,7 +6,11 @@ This guide walks you through setting up your Truesight account and running your 
 
 Visit the Truesight homepage and sign up. Truesight offers multiple secure authentication options: email and password, passwordless magic link, Google sign-in, or your company's SSO.
 
-Once signed in, you'll land on the [Dashboard](/app/dashboard), which guides you to get started with either [Error Analysis](/app/error-analysis) (for discovering patterns in your data) or [Guided Setup](/app/guided-setup) (for building an evaluation with criteria you already have in mind).
+Once signed in, you'll land on the [Dashboard](/app/dashboard), which offers three paths to get started:
+
+- **Start from a template**: The fastest path. Choose a pre-built evaluation template (AI Writing Detection or Code Quality), and Truesight automatically creates a labeled dataset and deploys a live eval endpoint in minutes. Great for new users who want to see the platform in action immediately.
+- **Error Analysis**: For discovering patterns in your data before you know what to measure.
+- **Guided Setup**: For building an evaluation when you already have criteria in mind.
 
 **Optional: Bring your own API keys.** Truesight works out of the box with Managed API keys and your credit balance. If you prefer to use your own provider keys, navigate to [Settings](/app/settings) to add keys for OpenAI, Anthropic, Gemini, or Perplexity. When configured, your custom keys take priority and credits are not consumed.
 
