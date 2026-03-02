@@ -1,0 +1,15 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "projectTitle": "Truesight",
+  "description": "Expert-grounded AI evaluation platform. Define custom pass/fail criteria, deploy them as live API endpoints, and score AI outputs in real time via REST API or MCP.",
+  "rules": [
+    "The REST evaluation endpoint is POST https://api.truesight.goodeyelabs.com/api/eval/{public_id} — get the public_id from the Live Evaluations page",
+    "Input keys in the request body must match the input column names configured on the evaluation's dataset (matching is case-insensitive)",
+    "Two API key types: ts_sk_ keys are scoped to a single live evaluation; ts_pat_ platform keys provide broader access based on assigned scopes",
+    "The MCP server URL is https://api.truesight.goodeyelabs.com/mcp/ — authenticate with Authorization: Bearer ts_pat_... and the required scopes",
+    "run_eval requires the live-evaluations:execute scope; create_and_deploy_evaluation requires evaluations:write and live-evaluations:write",
+    "Mutating MCP tools (create_dataset, upload_dataset, deploy_live_evaluation, create_and_deploy_evaluation, add_reviewed_items_to_dataset) accept an idempotency_key for safe retries",
+    "Live evaluation endpoints are rate-limited to 60 requests per minute — implement retry logic with exponential backoff for 429 errors",
+    "Companion agent skills for Claude Code and Cursor are available at https://github.com/Goodeye-Labs/truesight-mcp-skills"
+  ]
+}
