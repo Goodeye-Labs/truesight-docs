@@ -101,6 +101,57 @@ You can update which columns are used for evaluation at any time from the datase
 
 When you review evaluation results and flag corrections, those corrections can be promoted back into your dataset. This creates a feedback loop where your dataset improves over time based on evaluation insights. See [Results & Review](/docs/results-review) for details on the Review Queue workflow.
 
+## Programmatic access
+
+You can create and delete datasets via the REST API using a [Platform API Key](/docs/platform-api-keys) with the `datasets:write` scope. The [MCP integration](/docs/mcp-integration) also provides `upload_dataset`, `create_dataset`, and related tools for agent-driven workflows.
+
+### Uploading a dataset via REST
+
+Use `POST /api/datasets/upload` with a `multipart/form-data` request. Supported file extensions are `.csv`, `.json`, and `.jsonl`. The file size limit is 50 MB and the row limit is 250,000.
+
+```bash
+curl -X POST "https://api.truesight.goodeyelabs.com/api/datasets/upload" \
+  -H "Authorization: Bearer ts_pat_your_key_here" \
+  -F "name=My Dataset" \
+  -F "description=Customer support conversations" \
+  -F "file=@conversations.jsonl"
+```
+
+```python
+import requests
+
+with open("conversations.jsonl", "rb") as f:
+    response = requests.post(
+        "https://api.truesight.goodeyelabs.com/api/datasets/upload",
+        headers={"Authorization": "Bearer ts_pat_your_key_here"},
+        data={"name": "My Dataset", "description": "Customer support conversations"},
+        files={"file": ("conversations.jsonl", f, "application/octet-stream")},
+    )
+
+dataset = response.json()
+print(dataset["public_id"])  # e.g. "ds_abc123"
+```
+
+After upload, the dataset's input field is empty. You will need to configure which column contains the AI input before running evaluations. You can do this from the dataset detail page or via `PATCH /api/datasets/{dataset_id}/input-field`.
+
+### Deleting a dataset via REST
+
+Use `DELETE /api/datasets/{dataset_id}` with the dataset's `public_id`. Only the dataset owner can delete it; admin-level share holders cannot.
+
+If the dataset has dependent evaluations, the request will fail unless you pass `?force=true`, which deletes those evaluations as well. However, if any of those evaluations have active live evaluation endpoints, the deletion will fail regardless of `force`. Deactivate any live evaluations first before deleting the dataset.
+
+```bash
+# Delete a dataset with no dependents
+curl -X DELETE "https://api.truesight.goodeyelabs.com/api/datasets/ds_abc123" \
+  -H "Authorization: Bearer ts_pat_your_key_here"
+
+# Delete a dataset and its dependent evaluations
+curl -X DELETE "https://api.truesight.goodeyelabs.com/api/datasets/ds_abc123?force=true" \
+  -H "Authorization: Bearer ts_pat_your_key_here"
+```
+
+A successful deletion returns `HTTP 204 No Content`.
+
 ## Best practices
 
 - **Start small**: 20 to 50 examples is enough to build and test initial evaluations. You can always add more later.

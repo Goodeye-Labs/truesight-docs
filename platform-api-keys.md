@@ -91,6 +91,40 @@ When creating a key, you choose which scopes to assign. Each scope grants access
 
 **Tip:** Assign only the scopes your key needs. For a read-only integration, select only the `:read` scopes. For a CI pipeline that runs evaluations, `live-evaluations:execute` may be all you need.
 
+## Common endpoints
+
+The examples above use `GET /api/datasets` to illustrate the pattern. The same authentication approach works across all Truesight API resources. Here are the most commonly used endpoints for reading data:
+
+| Endpoint | Scope required | Description |
+|----------|---------------|-------------|
+| `GET /api/datasets` | `datasets:read` | List all datasets you have access to |
+| `GET /api/datasets/{dataset_id}` | `datasets:read` | Get full details for a specific dataset, including its columns, judgment configs, and a preview of the first 10 rows. Use the dataset's `public_id` (e.g. `ds_abc123`) as the path parameter. |
+| `GET /api/evaluations` | `evaluations:read` | List all evaluations you have access to. Accepts `page`, `page_size`, and `base_only` (set to `true` to exclude evaluation variants) query parameters. |
+| `GET /api/evaluations/{evaluation_id}` | `evaluations:read` | Get full details for a specific evaluation including its configuration. |
+| `GET /api/live-evaluations` | `live-evaluations:read` | List all deployed live evaluations. Note: the `api_key` field is intentionally blank in list responses; only a masked preview is shown. Retrieve a single live evaluation by ID to get its full `api_key_preview`. |
+
+For example, to list your evaluations:
+
+```python
+import requests
+
+response = requests.get(
+    "https://api.truesight.goodeyelabs.com/api/evaluations",
+    headers={
+        "Authorization": "Bearer ts_pat_your_key_here",
+    },
+    params={
+        "page": 1,
+        "page_size": 25,
+        "base_only": True,  # exclude evaluation variants
+    },
+)
+
+data = response.json()
+for evaluation in data["items"]:
+    print(evaluation["public_id"], evaluation["name"])
+```
+
 ## Running evaluations with a platform key
 
 Platform API keys with the `live-evaluations:execute` scope can call the same evaluation endpoint as Live Evaluation keys. The difference is that platform keys authenticate as your user, so you need access to the live evaluation being called.

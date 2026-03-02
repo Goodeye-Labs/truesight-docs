@@ -64,6 +64,48 @@ When you approve results in the Review Queue, you can add them back into your da
 - Provides better training examples for future [evaluations](/docs/evaluations)
 - Creates a documented record of expert decisions
 
+## Programmatic workflow
+
+You can drive the entire flag-review-promote loop programmatically using the [MCP integration](/docs/mcp-integration) or the REST API with a [Platform API Key](/docs/platform-api-keys).
+
+### Via MCP
+
+The three tools that cover this workflow are:
+
+1. **`flag_review_item`** -- Flag an evaluation run for review. Pass the `run_id` of the evaluation run you want to examine. This creates one review item per output criterion.
+2. **`judge_review_item`** -- Submit a human judgment for a single review item. Pass the `item_id` (from `list_review_items`), the correct `judgment_value` (e.g. `"Pass"` or `"Fail"`), and an optional `notes` string.
+3. **`add_reviewed_items_to_dataset`** -- Promote all judged items for a run back into the source dataset. Pass the same `run_id`. All items must have a `judgment_value` set before this step.
+
+### Via REST
+
+The equivalent REST path uses `POST /api/review-items/promote` with a `review:write` scoped platform key:
+
+```python
+import requests
+
+headers = {"Authorization": "Bearer ts_pat_your_key_here"}
+base = "https://api.truesight.goodeyelabs.com"
+
+# Step 1: Flag a run for review
+requests.post(f"{base}/api/review-items/flag", headers=headers,
+              json={"eval_run_id": "run_abc123"})
+
+# Step 2: List the review items to get their IDs
+items = requests.get(f"{base}/api/review-items", headers=headers).json()["items"]
+
+# Step 3: Judge each item
+for item in items:
+    requests.patch(f"{base}/api/review-items/{item['id']}", headers=headers,
+                   json={"judgment_value": "Pass"})
+
+# Step 4: Promote all judged items back into the dataset
+response = requests.post(f"{base}/api/review-items/promote", headers=headers,
+                         json={"eval_run_id": "run_abc123"})
+print(response.json())  # {"success": true, "promoted_row_id": ..., "warnings": []}
+```
+
+The promote endpoint requires every review item for that run to have a `judgment_value` set. If any item is missing a judgment, the request returns a `400` error.
+
 ## Continuous improvement cycle
 
 Results and Review form a continuous improvement loop:
