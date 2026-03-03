@@ -7,6 +7,7 @@ Model Context Protocol (MCP) lets AI assistants like Claude, Cursor, Windsurf, a
 Truesight exposes a curated set of tools through MCP. When connected, your AI assistant can:
 
 - List, inspect, create, and upload datasets
+- Discover pre-built templates and provision private template datasets
 - Configure dataset inputs and judgment criteria
 - Create and deploy live evaluation endpoints
 - Run live evaluations and score inputs on demand
@@ -187,6 +188,8 @@ Each tool requires a specific scope on your API key. If the key doesn't have the
 | `get_dataset_rows` | Get rows from a dataset with pagination | `datasets:read` |
 | `create_dataset` | Create a new empty dataset with specified columns | `datasets:write` |
 | `upload_dataset` | Create a dataset and populate it with rows in one step | `datasets:write` |
+| `list_templates` | List available pre-built evaluation templates | `datasets:read` |
+| `provision_template` | Create a private dataset copy from a template slug | `datasets:write` |
 | `configure_dataset_inputs` | Set which column(s) contain the AI input to evaluate | `datasets:write` |
 | `configure_judgment_columns` | Configure how the evaluation judges AI outputs | `datasets:write` |
 | `update_dataset_row` | Update one or more column values in a single dataset row | `datasets:write` |

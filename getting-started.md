@@ -8,7 +8,7 @@ Visit the Truesight homepage and sign up. Truesight offers multiple secure authe
 
 Once signed in, you'll land on the [Dashboard](/app/dashboard), which offers three paths to get started:
 
-- **Start from a template**: The fastest path. Choose a pre-built evaluation template (AI Writing Detection or Code Quality), and Truesight automatically creates a labeled dataset and deploys a live eval endpoint in minutes. Great for new users who want to see the platform in action immediately.
+- **Start from a template**: The fastest path. Choose a pre-built evaluation template, and Truesight automatically creates a labeled dataset and deploys a live evaluation endpoint in minutes. Great for new users who want to see the platform in action immediately.
 - **Error Analysis**: For discovering patterns in your data before you know what to measure.
 - **Guided Setup**: For building an evaluation when you already have criteria in mind.
 

@@ -16,6 +16,13 @@ Truesight lets you create custom evaluation criteria based on your domain expert
 
 Truesight follows a structured workflow to turn your expertise into automated evaluations:
 
+Fast path for first-time users:
+
+1. **Start from a template**: Pick a pre-built template from the Dashboard to provision a labeled starter dataset and deploy quickly
+2. **Customize and iterate**: Review criteria, adjust labels, and redeploy as needed
+
+Standard path:
+
 1. **Upload your data**: Bring in datasets of AI inputs and outputs you want to evaluate
 2. **Review and label**: Use [Error Analysis](/docs/error-analysis) to identify patterns and failure modes in your data
 3. **Build evaluations**: Turn your findings into structured evaluation criteria using [Guided Setup](/docs/evaluations)

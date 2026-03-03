@@ -21,6 +21,17 @@ When using **Truesight's Managed API keys**, evaluations draw from your credit b
 
 ## Building evaluations
 
+### Start from a template
+
+If you want the fastest path, start from a pre-built template on the [Dashboard](/app/dashboard).
+
+- Click **Browse Templates**
+- Choose a template for your use case
+- Truesight provisions a private dataset with pre-labeled examples and judgment criteria
+- Continue in Guided Setup to review, customize, and deploy
+
+Templates are a strong starting point, but you can edit criteria, add rows, and redeploy to match your domain.
+
 ### Guided Setup
 
 The recommended way to create evaluations is through [Guided Setup](/app/guided-setup), accessible from the sidebar. The wizard walks you through each step:
