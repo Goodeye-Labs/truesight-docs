@@ -230,26 +230,22 @@ The following mutating tools accept an optional `idempotency_key` parameter for 
 
 For clients that support agent skills (Claude Code, Cursor, and others), companion skills are available that give your AI assistant step-by-step workflow guidance for all Truesight MCP workflows.
 
-Install both skills with:
+Install all skills with:
 
 ```bash
-# truesight-mcp skill: covers scoring inputs, error analysis, and the review loop
-curl -fsSL https://raw.githubusercontent.com/Goodeye-Labs/truesight-mcp-skills/main/skills/truesight-mcp/SKILL.md \
-  -o .claude/skills/truesight-mcp/SKILL.md --create-dirs
-
-# create-evaluation skill: covers scoping and deploying new live evaluations
-curl -fsSL https://raw.githubusercontent.com/Goodeye-Labs/truesight-mcp-skills/main/skills/create-evaluation/SKILL.md \
-  -o .claude/skills/create-evaluation/SKILL.md --create-dirs
+BASE=https://raw.githubusercontent.com/Goodeye-Labs/truesight-mcp-skills/main/skills
+for skill in truesight-workflows evaluate-trace error-analysis review-and-promote-traces bootstrap-template-evaluation create-evaluation eval-audit build-review-interface; do
+  curl -fsSL "$BASE/$skill/SKILL.md" -o ".claude/skills/$skill/SKILL.md" --create-dirs
+done
 ```
 
 Or install globally (available in all projects):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Goodeye-Labs/truesight-mcp-skills/main/skills/truesight-mcp/SKILL.md \
-  -o ~/.claude/skills/truesight-mcp/SKILL.md --create-dirs
-
-curl -fsSL https://raw.githubusercontent.com/Goodeye-Labs/truesight-mcp-skills/main/skills/create-evaluation/SKILL.md \
-  -o ~/.claude/skills/create-evaluation/SKILL.md --create-dirs
+BASE=https://raw.githubusercontent.com/Goodeye-Labs/truesight-mcp-skills/main/skills
+for skill in truesight-workflows evaluate-trace error-analysis review-and-promote-traces bootstrap-template-evaluation create-evaluation eval-audit build-review-interface; do
+  curl -fsSL "$BASE/$skill/SKILL.md" -o "$HOME/.claude/skills/$skill/SKILL.md" --create-dirs
+done
 ```
 
 The skills are hosted at [github.com/Goodeye-Labs/truesight-mcp-skills](https://github.com/Goodeye-Labs/truesight-mcp-skills).
