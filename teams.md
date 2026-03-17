@@ -11,7 +11,7 @@ An Organization is the top-level container for your team's Truesight account. It
 - **Organization API keys**: Set provider keys that apply to all members
 - **Shared resources**: Datasets, evaluations, and results visible to the organization
 
-Organizations are available on the **Teams** and **Enterprise** subscription tiers.
+Multi-member organizations are available on the **Pro** and **Enterprise** subscription tiers.
 
 ### Organization API keys
 
@@ -28,9 +28,17 @@ When organization API keys are configured, they take precedence over both indivi
 
 Truesight uses a **credit balance** system for evaluations run with Managed API keys. Your organization's balance is visible on the [Usage & Balance](/app/usage) page.
 
-- **Starter credits**: New accounts receive starter credits to get started immediately.
+- **Included credits**: Your monthly subscription payment is credited directly to your account each billing cycle as managed AI credits.
 - **Purchasing credits**: Organization admins can buy additional credits directly from the [Usage & Balance](/app/usage) page. Choose a preset amount ($25, $50, $100, or $250) or enter a custom amount between $5 and $1,000. Purchases are processed securely through Stripe.
-- **BYOK (Bring Your Own Key)**: When you configure your own API keys (in [Settings](/app/settings) at the user level or at the [organization](/app/organization) level), those keys take priority over Managed API keys. Credits are only consumed when no custom keys are configured. Organization keys take precedence over user keys.
+- **BYOK (Bring Your Own Key)**: Available on the **Enterprise** plan. When you configure your own API keys (in [Settings](/app/settings) at the user level or at the [organization](/app/organization) level), those keys take priority over Managed API keys. Credits are only consumed when no custom keys are configured. Organization keys take precedence over user keys.
+
+### Evaluation result retention
+
+Evaluation results are retained according to your subscription plan:
+
+- **Hobby**: 30 days
+- **Pro**: 90 days
+- **Enterprise**: unlimited
 
 To monitor usage, visit the [Usage & Balance](/app/usage) page in the sidebar. It shows your current balance, a breakdown of credit allocations, and usage history by provider. Note that purchasing credits and managing billing requires organization admin privileges.
 
@@ -66,7 +74,7 @@ Team admins can:
 
 ## Sharing with individual users
 
-On **Enterprise** plans, resource owners and admins can share datasets, evaluations, and live evaluations directly with individual users in the same organization. This is useful when you need to grant access to a specific person without creating or modifying a team.
+On **Pro and Enterprise** plans, resource owners and admins can share datasets, evaluations, and live evaluations directly with individual users in the same organization. This is useful when you need to grant access to a specific person without creating or modifying a team.
 
 ### How it works
 
@@ -96,7 +104,7 @@ When a user has access through multiple paths (for example, both a team share an
 
 ## Ownership transfers
 
-On **Enterprise** plans, you can transfer ownership of a dataset, evaluation, or live evaluation to another user in your organization. This is helpful when a team member changes roles or when someone else should take over management of a resource.
+On **Pro and Enterprise** plans, you can transfer ownership of a dataset, evaluation, or live evaluation to another user in your organization. This is helpful when a team member changes roles or when someone else should take over management of a resource.
 
 ### Transferring ownership
 
@@ -113,8 +121,8 @@ Truesight uses a unified [Invitations](/app/invitations) page (accessible from t
 
 - **Organization invitations**: Invitations to join an organization
 - **Team invitations**: Invitations to join a team within your organization
-- **Resource invitations**: Individual shares for datasets, evaluations, or live evaluations awaiting your acceptance (Enterprise only)
-- **Ownership transfers**: Requests from other users to transfer resource ownership to you (Enterprise only)
+- **Resource invitations**: Individual shares for datasets, evaluations, or live evaluations awaiting your acceptance (Pro and Enterprise)
+- **Ownership transfers**: Requests from other users to transfer resource ownership to you (Pro and Enterprise)
 
 You can accept or decline each invitation individually.
 

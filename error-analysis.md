@@ -16,7 +16,7 @@ Open Coding is the first phase. You review examples from your dataset one at a t
 
 1. Navigate to [Error Analysis](/app/error-analysis) in the sidebar and select a dataset
 2. You're shown one example at a time, including the input, output, and any other columns
-3. For each example, write notes describing what you observe
+3. For each example, write notes describing what you observe. Use Quick notes to quickly insert reusable note text when helpful.
 4. Move through examples at your own pace
 
 ### What to look for
@@ -36,7 +36,7 @@ There's no wrong answer in Open Coding. The goal is to capture your observations
 - **Be specific**: "Hallucinated a statistic" is more useful than "wrong"
 - **Use natural language**: Write notes the way you'd describe the issue to a colleague
 - **Don't over-think it**: Speed matters more than perfection in this phase
-- **Review at least 15 to 20 examples**: You need enough data for meaningful patterns to emerge
+- **Review at least 20 examples**: You need enough data for meaningful patterns to emerge
 
 ## Axial Coding
 

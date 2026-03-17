@@ -51,13 +51,13 @@ Send a JSON body with your input data:
 }
 ```
 
-The keys in `inputs` must match the input column names configured in your evaluation's dataset. Column name matching is case-insensitive.
+The keys in `inputs` must match the input column names configured in your evaluation's dataset. Column name matching is case-insensitive. For image-only evaluations (no text content columns configured), `inputs` can be an empty object -- just provide `media_url` instead.
 
 #### Optional fields
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `media_url` | string | URL to an image for evaluations that include image content |
+| `media_url` | string | URL to an image for evaluations that include image content. Required for image-only evaluations. |
 | `include_owner` | boolean | When `true`, includes the Live Evaluation owner's name (or email) in the response under the `owner` field. Defaults to `false`. |
 
 ### Response
@@ -115,7 +115,7 @@ Each API call consumes credits from your organization's balance when using Trues
 
 To add credits, visit the [Usage & Balance](/app/usage) page in the sidebar. You can purchase credits instantly using preset amounts ($25, $50, $100, $250) or enter a custom amount ($5 to $1,000). Payments are processed through Stripe.
 
-**Using your own API keys**: If you configure your own provider API keys (either in [Settings](/app/settings) at the user level or at the [organization](/app/organization) level), those keys take priority and credits are not consumed. The system only uses Managed API keys and consumes credits when no custom keys are configured. See [Teams & Organizations](/docs/teams-organizations) for details on managing credits and API keys.
+**Using your own API keys (BYOK)**: Available on the **Enterprise** plan. When configured, your keys take priority and credits are not consumed. See [Teams & Organizations](/docs/teams-organizations) for details on managing credits and API keys.
 
 ## Examples
 

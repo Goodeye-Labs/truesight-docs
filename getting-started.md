@@ -12,7 +12,7 @@ Once signed in, you'll land on the [Dashboard](/app/dashboard), which offers thr
 - **Error Analysis**: For discovering patterns in your data before you know what to measure.
 - **Guided Setup**: For building an evaluation when you already have criteria in mind.
 
-**Optional: Bring your own API keys.** Truesight works out of the box with Managed API keys and your credit balance. If you prefer to use your own provider keys, navigate to [Settings](/app/settings) to add keys for OpenAI, Anthropic, Gemini, or Perplexity. When configured, your custom keys take priority and credits are not consumed.
+**Optional: Bring your own API keys (Enterprise only).** Truesight works out of the box with Managed API keys and your credit balance. Enterprise users can configure their own provider keys in [Settings](/app/settings). When configured, custom keys take priority and credits are not consumed.
 
 ## Step 2: Upload your first dataset
 

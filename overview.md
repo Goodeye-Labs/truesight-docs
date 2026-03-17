@@ -69,7 +69,7 @@ Results show evaluation outcomes across your datasets. The Review Queue lets you
 
 ### Credits and API Keys
 
-Evaluations consume credits from your balance when using Truesight's Managed API keys. You can bring your own provider API keys (at the user or organization level) which take priority over Managed API keys. When configured, your custom keys are used and credits are not consumed. Credits can be purchased directly from within the platform. See [Teams & Organizations](/docs/teams-organizations) for details on managing API keys and credits.
+Evaluations consume credits from your balance when using Truesight's Managed API keys. Credits can be purchased directly from within the platform. Bringing your own provider API keys (BYOK) is available on the **Enterprise** plan. See [Teams & Organizations](/docs/teams-organizations) for details on managing API keys and credits.
 
 ## Next steps
 

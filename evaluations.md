@@ -17,7 +17,7 @@ Truesight supports judges from four built-in model providers:
 
 Truesight also supports any additional provider compatible with [LiteLLM](https://docs.litellm.ai/docs/providers), giving you access to a wide range of models.
 
-When using **Truesight's Managed API keys**, evaluations draw from your credit balance. You can bring your own API keys (BYOK) for any provider from the [Settings](/app/settings) page. When configured, your custom keys take priority and credits are not consumed. See [Teams & Organizations](/docs/teams-organizations) for organization-wide key management.
+When using **Truesight's Managed API keys**, evaluations draw from your credit balance. Bringing your own API keys (BYOK) is available on the **Enterprise** plan. See [Teams & Organizations](/docs/teams-organizations) for organization-wide key management.
 
 ## Building evaluations
 

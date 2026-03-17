@@ -168,12 +168,16 @@ This adds the server to your user-level config (available in all projects). To s
 
 ## Workflow prompts
 
-The Truesight MCP exposes two built-in prompts for clients that support the MCP Prompts primitive (such as Claude Desktop). These provide step-by-step workflow guidance without requiring any additional setup.
+The Truesight MCP exposes built-in prompts for clients that support the MCP Prompts primitive (such as Claude Desktop). These provide step-by-step workflow guidance without requiring any additional setup.
 
 | Prompt | Description |
 |--------|-------------|
-| `truesight_mcp_guide` | Orchestration playbook covering scoring inputs, error analysis, and the review-and-promote loop. Includes a decision tree to help choose the right workflow. |
-| `create_evaluation_workflow` | Step-by-step guide for scoping and deploying a new live evaluation from scratch. |
+| `truesight_mcp_guide` | Router prompt that maps user intent to the correct workflow prompt. |
+| `evaluate_trace_workflow` | Evaluate one or more traces against an existing live evaluation. |
+| `error_analysis_workflow` | Analyze dataset traces, annotate error categories, and consolidate failure modes. |
+| `review_and_promote_traces_workflow` | Judge review queue items and promote judged outputs back to datasets. |
+| `bootstrap_template_evaluation_workflow` | Provision from a pre-built template and deploy quickly. |
+| `create_evaluation_workflow` | Full create-evaluation workflow for scoping, deployment, cURL generation, and verification. |
 
 For clients that don't support MCP Prompts, use the companion agent skills instead. See [Agent Skills](#agent-skills).
 
@@ -208,6 +212,8 @@ Each tool requires a specific scope on your API key. If the key doesn't have the
 | `suggest_error_notes` | Get AI-suggested error notes and category for a trace | `error-analysis:execute` |
 | `consolidate_error_categories` | Get AI suggestions for merging similar error categories | `error-analysis:execute` |
 | `apply_category_mappings` | Apply error category consolidation mappings to all matching rows | `datasets:write` |
+
+Each of `create_dataset`, `upload_dataset`, and `configure_dataset_inputs` accepts an optional `media_url_column` for multimodal evaluation. If you omit it from any of these calls, the current media URL column is preserved. To clear it, send `null` through the underlying dataset column-roles API.
 
 ### Pagination
 

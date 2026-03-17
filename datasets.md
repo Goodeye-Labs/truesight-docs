@@ -77,7 +77,9 @@ All columns are visible by default when you review data. You can toggle columns 
 Optionally, you can designate specific columns from the dataset detail page:
 
 - **Text Content**: Select one or more columns that contain the text to evaluate. If you select multiple columns, they'll be combined together with labels so the evaluator can see all of them. For example, you might select both a "user_query" column and a "bot_response" column.
-- **Image URL**: Optionally select a column that contains image URLs, for evaluations that include image content.
+- **Image URL**: Select a column that contains image URLs, for evaluations that include image content.
+
+You must assign at least one text content column or one image URL column (or both). Image-only evaluations are supported -- if your dataset contains only images and no text content, assign just the image URL column.
 
 ### Automatic column type detection
 
