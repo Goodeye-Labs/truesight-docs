@@ -35,7 +35,7 @@ Both key types use the same `Authorization: Bearer` header format. **Keep your A
 POST /api/eval/{public_id}
 ```
 
-The `public_id` is the unique identifier for your Live Evaluation, shown on the [Live Evaluations](/app/live-evaluations) page.
+The path parameter must be the Live Evaluation `public_id` shown on the [Live Evaluations](/app/live-evaluations) page, for example `live_abc123`. Do not use the parent evaluation ID or dataset ID here.
 
 ### Request
 
@@ -62,7 +62,7 @@ The keys in `inputs` must match the input column names configured in your evalua
 
 ### Response
 
-A successful evaluation returns:
+A successful evaluation returns a top-level `run_id` plus a top-level `results` object keyed by criterion name:
 
 ```json
 {
@@ -81,9 +81,24 @@ A successful evaluation returns:
 }
 ```
 
-- `run_id` is a unique identifier for this evaluation run
-- `results` is an object containing the judgment and reasoning for each evaluation criterion
+- `run_id` is the unique identifier for this evaluation run
+- `results` is a flat object whose keys are your evaluation criteria and whose values contain that criterion's `final_output` and `reasoning`
 - `owner` is the name (or email) of the Live Evaluation's owner, only present when `include_owner` is `true` in the request
+
+There is no extra wrapper around the criterion results. Read them directly from `response.results[criterion_name]`.
+
+### Extracting criterion results
+
+```typescript
+const { run_id, results } = await response.json();
+
+const accuracy = results.factual_accuracy?.final_output;
+const completenessReasoning = results.response_completeness?.reasoning;
+
+for (const [criterion, outcome] of Object.entries(results)) {
+  console.log(run_id, criterion, outcome.final_output);
+}
+```
 
 ## Error handling
 
@@ -92,6 +107,7 @@ A successful evaluation returns:
 | `200` | Evaluation completed successfully |
 | `401` | Missing or invalid API key |
 | `402` | Subscription inactive or insufficient credits (see [Credits and billing](#credits-and-billing) below) |
+| `403` | Valid platform API key, but missing `live-evaluations:execute` scope |
 | `404` | Live Evaluation not found or inactive |
 | `422` | Invalid request (missing required inputs, validation errors) |
 | `429` | Rate limit exceeded |
@@ -108,6 +124,13 @@ Error responses include a `detail` field with a human-readable message:
 ## Rate limits
 
 Each Live Evaluation endpoint is rate-limited to **60 requests per minute** by default. If you exceed the limit, you'll receive a `429` response. Wait and retry after a brief delay.
+
+## Production guidance
+
+- **Rate limits**: Treat `429` as backpressure on that specific Live Evaluation and retry with exponential backoff plus jitter.
+- **Retries**: Retry transient failures such as `429` and `500`. Do not retry `401`, `403`, `404`, or `422` without fixing the request or key first.
+- **Concurrency**: Cap concurrent requests per Live Evaluation so your own workers do not create avoidable bursts against the 60 RPM limit.
+- **Result consistency**: Each request creates a new `run_id`. If you need an audit trail or downstream joins, persist the `run_id` alongside the raw response and read criterion outcomes from `results.<criterion>.final_output`.
 
 ## Credits and billing
 
@@ -152,7 +175,8 @@ response = requests.post(
 )
 
 result = response.json()
-print(result["results"])
+print(result["run_id"])
+print(result["results"]["factual_accuracy"]["final_output"])
 ```
 
 ### JavaScript / TypeScript
@@ -176,7 +200,8 @@ const response = await fetch(
 );
 
 const result = await response.json();
-console.log(result.results);
+console.log(result.run_id);
+console.log(result.results.factual_accuracy?.final_output);
 ```
 
 ## Setting up a Live Evaluation

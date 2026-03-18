@@ -105,7 +105,41 @@ When you review evaluation results and flag corrections, those corrections can b
 
 ## Programmatic access
 
-You can create and delete datasets via the REST API using a [Platform API Key](/docs/platform-api-keys) with the `datasets:write` scope. The [MCP integration](/docs/mcp-integration) also provides `upload_dataset`, `create_dataset`, and related tools for agent-driven workflows.
+You can create, upload, read, and delete datasets through both REST and MCP:
+
+- **Use REST** when you're building an application, backend job, ETL, or export flow and want explicit HTTP pagination.
+- **Use MCP** when you're working inside an AI agent workflow and want higher-level tools such as `upload_dataset`, `create_dataset`, and `get_dataset_rows`.
+
+For REST access, use a [Platform API Key](/docs/platform-api-keys). Reading metadata or rows requires `datasets:read`; uploading or deleting requires `datasets:write`.
+
+### Reading dataset metadata and rows via REST
+
+Use `GET /api/datasets/{dataset_id}` when you want dataset metadata plus a preview of the first 10 rows:
+
+```bash
+curl -X GET "https://api.truesight.goodeyelabs.com/api/datasets/ds_abc123" \
+  -H "Authorization: Bearer ts_pat_your_key_here"
+```
+
+Use `GET /api/datasets/{dataset_id}/rows` when you need the full dataset contents page by page:
+
+```bash
+curl -X GET "https://api.truesight.goodeyelabs.com/api/datasets/ds_abc123/rows?page=1&page_size=100" \
+  -H "Authorization: Bearer ts_pat_your_key_here"
+```
+
+The paginated rows response includes:
+
+| Field | Description |
+|-------|-------------|
+| `rows` | The page of dataset rows |
+| `row_ids` | Stable row IDs aligned to `rows` by index |
+| `total` | Total number of matching rows |
+| `page` | Current page number |
+| `page_size` | Number of rows returned per page |
+| `total_pages` | Total available pages |
+
+If you only need schema, judgment configs, and a quick preview, `GET /api/datasets/{dataset_id}` is usually enough. If you need to read every row, use `GET /api/datasets/{dataset_id}/rows` in a loop. For agent-driven retrieval, MCP is usually more convenient than building the pagination loop yourself.
 
 ### Uploading a dataset via REST
 
@@ -134,7 +168,7 @@ dataset = response.json()
 print(dataset["public_id"])  # e.g. "ds_abc123"
 ```
 
-After upload, the dataset's input field is empty. You will need to configure which column contains the AI input before running evaluations. You can do this from the dataset detail page or via `PATCH /api/datasets/{dataset_id}/input-field`.
+After upload, Truesight automatically assigns default text input columns and detects an image URL column when applicable. You can keep those defaults or update them later from the dataset detail page or via `PATCH /api/datasets/{dataset_id}/input-field` using a platform key with the `datasets:write` scope.
 
 ### Deleting a dataset via REST
 

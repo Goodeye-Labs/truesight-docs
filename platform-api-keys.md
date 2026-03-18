@@ -91,6 +91,21 @@ When creating a key, you choose which scopes to assign. Each scope grants access
 
 **Tip:** Assign only the scopes your key needs. For a read-only integration, select only the `:read` scopes. For a CI pipeline that runs evaluations, `live-evaluations:execute` may be all you need.
 
+## Least-privilege recipes
+
+Use the smallest scope set that supports your integration:
+
+| Use case | Recommended scopes | Notes |
+|----------|--------------------|-------|
+| Run a deployed Live Evaluation from an app or CI job | `live-evaluations:execute` | Enough for `POST /api/eval/{public_id}`. |
+| Read dataset metadata and rows for export or sync | `datasets:read` | Covers both `GET /api/datasets/{dataset_id}` and `GET /api/datasets/{dataset_id}/rows`. |
+| Upload or delete datasets from a script | `datasets:write` | Add `datasets:read` too if the script also verifies the uploaded dataset afterward. |
+| Read evaluations and past run results | `evaluations:read`, `results:read` | Useful for reporting or dashboards. |
+| Review queue triage tool | `review:read`, `review:write` | Add `results:read` only if you also fetch full run details. |
+| MCP client that needs to browse datasets and evaluations | `datasets:read`, `evaluations:read` | Add `datasets:write` only if the agent must create or modify datasets. |
+
+If a key is valid but missing the required scope, the API returns `403`.
+
 ## Common endpoints
 
 The examples above use `GET /api/datasets` to illustrate the pattern. The same authentication approach works across all Truesight API resources. Here are the most commonly used endpoints for reading data:
@@ -98,10 +113,11 @@ The examples above use `GET /api/datasets` to illustrate the pattern. The same a
 | Endpoint | Scope required | Description |
 |----------|---------------|-------------|
 | `GET /api/datasets` | `datasets:read` | List all datasets you have access to |
-| `GET /api/datasets/{dataset_id}` | `datasets:read` | Get full details for a specific dataset, including its columns, judgment configs, and a preview of the first 10 rows. Use the dataset's `public_id` (e.g. `ds_abc123`) as the path parameter. |
+| `GET /api/datasets/{dataset_id}` | `datasets:read` | Get dataset metadata plus a preview of the first 10 rows. Use the dataset's `public_id` (for example `ds_abc123`) as the path parameter. |
+| `GET /api/datasets/{dataset_id}/rows` | `datasets:read` | Retrieve paginated dataset contents. Returns `rows`, aligned `row_ids`, `total`, `page`, `page_size`, and `total_pages`. |
 | `GET /api/evaluations` | `evaluations:read` | List all evaluations you have access to. Accepts `page`, `page_size`, and `base_only` (set to `true` to exclude evaluation variants) query parameters. |
 | `GET /api/evaluations/{evaluation_id}` | `evaluations:read` | Get full details for a specific evaluation including its configuration. |
-| `GET /api/live-evaluations` | `live-evaluations:read` | List all deployed live evaluations. Note: the `api_key` field is intentionally blank in list responses; only a masked preview is shown. Retrieve a single live evaluation by ID to get its full `api_key_preview`. |
+| `GET /api/live-evaluations` | `live-evaluations:read` | List all deployed live evaluations. Note: the `api_key` field is intentionally blank in list responses; only a masked preview is shown. Retrieve a single live evaluation by ID to get its masked `api_key_preview`. |
 
 For example, to list your evaluations:
 
@@ -127,7 +143,7 @@ for evaluation in data["items"]:
 
 ## Running evaluations with a platform key
 
-Platform API keys with the `live-evaluations:execute` scope can call the same evaluation endpoint as Live Evaluation keys. The difference is that platform keys authenticate as your user, so you need access to the live evaluation being called.
+Platform API keys with the `live-evaluations:execute` scope can call the same evaluation endpoint as Live Evaluation keys. The difference is that platform keys authenticate as your user, so you need access to the live evaluation being called, and the path parameter must be the Live Evaluation `public_id`.
 
 ```bash
 curl -X POST "https://api.truesight.goodeyelabs.com/api/eval/live_abc123" \
@@ -142,6 +158,14 @@ curl -X POST "https://api.truesight.goodeyelabs.com/api/eval/live_abc123" \
 ```
 
 See the [API Integration](/docs/api-integration) guide for details on the evaluation request format, response structure, and error handling.
+
+If you call this endpoint without `live-evaluations:execute`, the API returns `403` with a message such as:
+
+```json
+{
+  "detail": "Insufficient API key scopes. Required: ['live-evaluations:execute']"
+}
+```
 
 ## Managing keys
 
@@ -176,8 +200,8 @@ If you lose access to a resource (e.g., a share is removed), your API key will a
 | Status | Meaning |
 |--------|---------|
 | `401` | Missing, invalid, expired, or revoked API key |
-| `403` | Key is valid but missing the required scope for this endpoint |
 | `402` | Subscription inactive or insufficient credits |
+| `403` | Key is valid but missing the required scope for this endpoint |
 | `404` | Resource not found or you don't have access |
 
 Error responses include a `detail` field:
