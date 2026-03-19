@@ -213,7 +213,13 @@ Each tool requires a specific scope on your API key. If the key doesn't have the
 | `consolidate_error_categories` | Get AI suggestions for merging similar error categories | `error-analysis:execute` |
 | `apply_category_mappings` | Apply error category consolidation mappings to all matching rows | `datasets:write` |
 
-Each of `create_dataset`, `upload_dataset`, and `configure_dataset_inputs` accepts an optional `media_url_column` for multimodal evaluation. If you omit it from any of these calls, the current media URL column is preserved. To clear it, send `null` through the underlying dataset column-roles API.
+Each of `create_dataset`, `upload_dataset`, and `configure_dataset_inputs` accepts an optional `media_url_column` for multimodal evaluation. Three input configurations are supported:
+
+- **Text-only**: set `input_columns` only (default).
+- **Image-only**: set `media_url_column` and pass `input_columns` as an empty list `[]`. At `run_eval` time, pass `inputs` as `{}` and provide the image via `media_url`.
+- **Both**: set `input_columns` and `media_url_column` to distinct columns.
+
+A column cannot appear in both `input_columns` and `media_url_column`. If you omit `media_url_column` from any of these calls, the current value is preserved. To clear it, send `null` through the underlying dataset column-roles API.
 
 ### Pagination
 
