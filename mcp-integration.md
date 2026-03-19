@@ -122,6 +122,8 @@ This adds the server to your user-level config (available in all projects). To s
 
 ### Claude Desktop
 
+Claude Desktop requires [Node.js](https://nodejs.org/) and the [`mcp-remote`](https://www.npmjs.com/package/mcp-remote) bridge (auto-installed via `npx`).
+
 1. Open Claude
 2. Go to **Settings** (gear icon) > **Developer** > **Edit Config**
 3. This opens your `claude_desktop_config.json` file. Add the Truesight server to the `mcpServers` object:
@@ -130,9 +132,15 @@ This adds the server to your user-level config (available in all projects). To s
 {
   "mcpServers": {
     "truesight": {
-      "url": "https://api.truesight.goodeyelabs.com/mcp/",
-      "headers": {
-        "Authorization": "Bearer YOUR_API_KEY_HERE"
+      "command": "npx",
+      "args": [
+        "mcp-remote",
+        "https://api.truesight.goodeyelabs.com/mcp/",
+        "--header",
+        "Authorization:${TRUESIGHT_KEY}"
+      ],
+      "env": {
+        "TRUESIGHT_KEY": "Bearer YOUR_API_KEY_HERE"
       }
     }
   }
