@@ -254,7 +254,7 @@ Install all skills with:
 
 ```bash
 BASE=https://raw.githubusercontent.com/Goodeye-Labs/truesight-mcp-skills/main/skills
-for skill in truesight-workflows evaluate-trace error-analysis review-and-promote-traces bootstrap-template-evaluation create-evaluation eval-audit build-review-interface; do
+for skill in truesight-workflows evaluate-trace error-analysis generate-synthetic-data review-and-promote-traces bootstrap-template-evaluation create-evaluation eval-audit build-review-interface; do
   curl -fsSL "$BASE/$skill/SKILL.md" -o ".claude/skills/$skill/SKILL.md" --create-dirs
 done
 ```
@@ -263,7 +263,7 @@ Or install globally (available in all projects):
 
 ```bash
 BASE=https://raw.githubusercontent.com/Goodeye-Labs/truesight-mcp-skills/main/skills
-for skill in truesight-workflows evaluate-trace error-analysis review-and-promote-traces bootstrap-template-evaluation create-evaluation eval-audit build-review-interface; do
+for skill in truesight-workflows evaluate-trace error-analysis generate-synthetic-data review-and-promote-traces bootstrap-template-evaluation create-evaluation eval-audit build-review-interface; do
   curl -fsSL "$BASE/$skill/SKILL.md" -o "$HOME/.claude/skills/$skill/SKILL.md" --create-dirs
 done
 ```
