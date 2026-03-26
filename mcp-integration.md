@@ -25,7 +25,7 @@ https://api.truesight.goodeyelabs.com/mcp/
 
 Add this URL to your MCP client (see the client-specific steps below), then sign in with your Truesight account when prompted. All tools are available based on your account permissions.
 
-> **Want more control over permissions?** You can also connect using a [Platform API Key](/docs/platform-api-keys) instead. See [Connecting with an API key](#connecting-with-an-api-key) at the bottom of this page.
+**Want more control over permissions?** You can also connect using a [Platform API Key](/docs/platform-api-keys) instead. See [Connecting with an API key](#connecting-with-an-api-key) at the bottom of this page.
 
 ## Client setup
 
@@ -44,8 +44,6 @@ Claude.ai and Claude Desktop share the same connectors, so you only need to set 
 
 ### ChatGPT
 
-Requires ChatGPT Pro, Team, Enterprise, or Edu. Developer Mode must be enabled, which shows an orange border around the chat and disables memory.
-
 1. Go to [**Settings > Apps > Advanced settings**](https://chatgpt.com/#settings/Connectors/Advanced) and enable **Developer Mode**
 2. Click **Create app**
 3. Enter:
@@ -55,7 +53,7 @@ Requires ChatGPT Pro, Team, Enterprise, or Edu. Developer Mode must be enabled, 
 4. Check the confirmation box and click **Create**
 5. When prompted, sign in with your Truesight account to authorize access
 
-> **Note:** Developer Mode must stay enabled to use custom connectors in ChatGPT. Conversations with custom connectors show an orange "Developer Mode" indicator.
+**Note:** Developer Mode must stay enabled to use custom connectors in ChatGPT. Conversations with custom connectors show an orange "Developer Mode" indicator.
 
 ### Cursor
 
@@ -212,7 +210,27 @@ The following mutating tools accept an optional `idempotency_key` parameter for 
 
 For clients that support agent skills (Claude Code, Cursor, and others), companion skills are available that give your AI assistant step-by-step workflow guidance for all Truesight MCP workflows.
 
-Install all skills with:
+### Claude Code plugin (recommended)
+
+If you use Claude Code, the fastest way to install all skills is through the Claude Marketplace:
+
+```bash
+# Register the marketplace
+/plugin marketplace add Goodeye-Labs/truesight-mcp-skills
+
+# Install the plugin
+/plugin install truesight@goodeye-labs-truesight
+```
+
+This installs the Truesight plugin and all companion skills in one step. To upgrade later:
+
+```bash
+/plugin update truesight@goodeye-labs-truesight
+```
+
+### Manual installation
+
+To install skill files directly (works with Claude Code, Cursor, and other clients):
 
 ```bash
 BASE=https://raw.githubusercontent.com/Goodeye-Labs/truesight-mcp-skills/main/skills

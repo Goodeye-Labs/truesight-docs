@@ -6,11 +6,14 @@ This guide walks you through setting up your Truesight account and running your 
 
 Visit the Truesight homepage and sign up. Truesight offers multiple secure authentication options: email and password, passwordless magic link, Google sign-in, or your company's SSO.
 
-Once signed in, you'll land on the [Dashboard](/app/dashboard), which offers three paths to get started:
+Once signed in, you'll land on the [Dashboard](/app/dashboard), which offers four paths to get started:
 
 - **Start from a template**: The fastest path. Choose a pre-built evaluation template, and Truesight automatically creates a labeled dataset and deploys a live evaluation endpoint in minutes. Great for new users who want to see the platform in action immediately.
-- **Error Analysis**: For discovering patterns in your data before you know what to measure.
-- **Guided Setup**: For building an evaluation when you already have criteria in mind.
+- **Build your evaluation**: Start the Guided Setup flow directly from the dashboard.
+- **Find what matters**: Jump into Error Analysis to discover failure patterns before you write criteria.
+- **Learn the basics**: Open the docs if you want the product tour first.
+
+![Truesight dashboard with four getting-started entry points](/docs-images/good-1004/dashboard-4-card-entrypoints.png)
 
 **Optional: Bring your own API keys (Enterprise only).** Truesight works out of the box with Managed API keys and your credit balance. Enterprise users can configure their own provider keys in [Settings](/app/settings). When configured, custom keys take priority and credits are not consumed.
 

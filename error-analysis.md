@@ -15,9 +15,11 @@ Open Coding is the first phase. You review examples from your dataset one at a t
 ### How it works
 
 1. Navigate to [Error Analysis](/app/error-analysis) in the sidebar and select a dataset
-2. You're shown one example at a time, including the input, output, and any other columns
+2. You're shown one example at a time, including the input, output, and any other columns. If the dataset contains images, they are displayed alongside the text.
 3. For each example, write notes describing what you observe. Use Quick notes to quickly insert reusable note text when helpful.
 4. Move through examples at your own pace
+
+![Error Analysis annotate step with quick-note badges and drafted notes](/docs-images/good-1004/error-analysis-annotate.png)
 
 ### What to look for
 
@@ -28,6 +30,7 @@ Note anything that stands out, whether positive or negative:
 - Tone or style issues
 - Correct handling of edge cases
 - Particularly good or bad reasoning
+- For images: layout problems, unclear labels, misleading visuals, or accessibility issues
 
 There's no wrong answer in Open Coding. The goal is to capture your observations without worrying about organization yet.
 
@@ -48,6 +51,8 @@ Axial Coding is the second phase. Here, you take the notes from Open Coding and 
 2. You review the suggested groupings and adjust them
 3. Name each category with a clear, descriptive label
 4. Add descriptions that explain what each category means
+
+![Error Analysis categorize step with staged categories and counts](/docs-images/good-1004/error-analysis-categorize.png)
 
 ### From notes to categories
 

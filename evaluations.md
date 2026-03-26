@@ -32,6 +32,8 @@ If you want the fastest path, start from a pre-built template on the [Dashboard]
 
 Templates are a strong starting point, but you can edit criteria, add rows, and redeploy to match your domain.
 
+![Template selection modal for pre-built evaluation templates](/docs-images/good-1004/template-selection-modal.png)
+
 ### Guided Setup
 
 The recommended way to create evaluations is through [Guided Setup](/app/guided-setup), accessible from the sidebar. The wizard walks you through each step:
@@ -44,9 +46,13 @@ Upload or select the dataset you want to evaluate. The dataset determines what c
 
 Configure the judgment columns for your expert annotations or labels. These are the columns with human assessments that Truesight will use to calibrate the evaluation.
 
+![Guided Setup step 2 showing a configured judgment column](/docs-images/good-1004/guided-setup-step-2-judgments.png)
+
 #### 3. Review
 
 Review examples from your dataset and provide expert labels. You can toggle which data columns are visible while reviewing to focus on the content that matters.
+
+![Guided Setup step 3 review screen with unreviewed examples](/docs-images/good-1004/guided-setup-step-3-review.png)
 
 #### 4. Finish
 
@@ -59,6 +65,16 @@ Try your evaluation on sample data to verify it works as expected. Review the re
 ### Manual configuration
 
 For advanced users, you can also create evaluations directly from the [Evaluations](/app/evaluations) page by clicking **Create Evaluation**. This gives you full control over the configuration without the step-by-step wizard.
+
+## What you can evaluate
+
+Truesight evaluations support three input types:
+
+- **Text**: Evaluate text content such as chatbot responses, generated summaries, or any written output. This is the most common configuration.
+- **Images**: Evaluate visual content such as charts, diagrams, screenshots, or generated images. The evaluation uses only the image with no text input.
+- **Text and images together**: Evaluate content that combines both, such as a chatbot response that includes an image.
+
+You choose the input type when setting up your dataset's content columns. See [Datasets](/docs/datasets) for details on configuring input columns.
 
 ## Running evaluations
 
@@ -90,6 +106,8 @@ This is useful for:
 - A/B testing different judge instructions
 - Comparing models across providers
 - Experimenting with different criteria formulations
+
+![Leaderboard comparing staged evaluation variants and validation metrics](/docs-images/good-1004/leaderboard-variants.png)
 
 ## Example criteria
 

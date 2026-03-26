@@ -81,13 +81,7 @@ Optionally, you can designate specific columns from the dataset detail page:
 
 You must assign at least one text content column or one image URL column (or both). Image-only evaluations are supported -- if your dataset contains only images and no text content, assign just the image URL column.
 
-### Automatic column type detection
-
-When you upload a dataset, Truesight automatically detects which columns contain image URLs. A column is classified as an image URL column when more than half of the non-empty cells in a sample of the first 50 rows contain only a URL pointing to an image file (e.g., `.png`, `.jpg`, `.webp`). Cells with additional text alongside the URL are not counted. The occasional malformed or missing value won't prevent a column from being detected.
-
-Detected image URL columns are pre-selected for you in the column roles step after upload, and all remaining columns are pre-selected as text content. You can always adjust these selections before confirming.
-
-If no content columns are explicitly set, all text columns are shown by default. You can change these selections at any time from the dataset detail page by clicking the more actions menu and choosing **Edit Details**.
+![Dataset Edit Details dialog showing text content and image URL column roles](/docs-images/good-1004/dataset-edit-details-column-roles.png)
 
 ## Managing datasets
 

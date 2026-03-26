@@ -49,6 +49,8 @@ The [Review Queue](/app/review-queue) is where you manually assess evaluation re
 4. For each item, you can **Approve** the evaluation's judgment or **Reject** it
 5. On the final judgment, choose **Approve & Add to Dataset** to save approved results back to your dataset
 
+![Review session modal with a pending judgment and rationale ready for approval](/docs-images/good-1004/review-session-modal.png)
+
 ### When to use the Review Queue
 
 - **Disagreements**: When the evaluation's judgment doesn't match your expert judgment

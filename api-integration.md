@@ -51,7 +51,7 @@ Send a JSON body with your input data:
 }
 ```
 
-The keys in `inputs` must match the input column names configured in your evaluation's dataset. Column name matching is case-insensitive. For image-only evaluations (no text content columns configured), `inputs` can be an empty object -- just provide `media_url` instead.
+The keys in `inputs` must match the input column names configured in your evaluation's dataset. Column name matching is case-insensitive. For image-only evaluations (no text content columns configured), you can omit `inputs` entirely and just provide `media_url`.
 
 #### Optional fields
 
@@ -202,6 +202,25 @@ const response = await fetch(
 const result = await response.json();
 console.log(result.run_id);
 console.log(result.results.factual_accuracy?.final_output);
+```
+
+### Image-only evaluation
+
+For evaluations that assess images with no text input columns, omit `inputs` and provide only `media_url`:
+
+```bash
+curl -X POST "https://api.truesight.goodeyelabs.com/api/eval/live_abc123" \
+  -H "Authorization: Bearer ts_sk_your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{"media_url": "https://example.com/chart.png"}'
+```
+
+```python
+response = requests.post(
+    "https://api.truesight.goodeyelabs.com/api/eval/live_abc123",
+    headers={"Authorization": "Bearer ts_sk_your_api_key_here"},
+    json={"media_url": "https://example.com/chart.png"},
+)
 ```
 
 ## Setting up a Live Evaluation

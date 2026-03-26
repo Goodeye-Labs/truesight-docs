@@ -1,6 +1,6 @@
 # Truesight Documentation
 
-Welcome to the Truesight documentation. Truesight is an AI evaluation platform that helps you build expert-grounded evaluations for your AI applications, no coding required.
+Welcome to the Truesight documentation. Truesight is an AI quality platform that helps you capture your quality bar and enforce it across your entire AI stack, no coding required.
 
 ## What is Truesight?
 
