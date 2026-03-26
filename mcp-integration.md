@@ -1,6 +1,6 @@
 # MCP Integration
 
-Model Context Protocol (MCP) lets AI assistants like Claude, Cursor, Windsurf, and VS Code (with GitHub Copilot) use Truesight as a tool provider. Instead of writing API calls yourself, your AI assistant can manage datasets, build and deploy evaluations, run live scoring, review results, and perform error analysis, all through natural language.
+Model Context Protocol (MCP) lets AI assistants like Claude.ai, ChatGPT, Claude Code, Cursor, Windsurf, and VS Code (with GitHub Copilot) use Truesight as a tool provider. Instead of writing API calls yourself, your AI assistant can manage datasets, build and deploy evaluations, run live scoring, review results, and perform error analysis, all through natural language.
 
 ## Overview
 
@@ -15,9 +15,14 @@ Truesight exposes a curated set of tools through MCP. When connected, your AI as
 - Browse, flag, and judge review queue items; promote reviewed data back to datasets
 - Perform error analysis: suggest error notes, consolidate categories, and apply mappings
 
-MCP connections use the same [Platform API Keys](/docs/platform-api-keys) as the REST API. The scopes you assign to the key determine which tools the assistant can use.
+Truesight MCP supports two authentication methods:
 
-## Quick setup
+- **OAuth (web clients):** Claude.ai and ChatGPT connect via OAuth. You sign in with your Truesight account and all tools are available based on your account permissions. No API key needed.
+- **API keys (IDE and CLI clients):** Claude Code, Cursor, VS Code, Windsurf, and Claude Desktop connect with a [Platform API Key](/docs/platform-api-keys). The scopes you assign to the key determine which tools the assistant can use.
+
+> **Using Claude.ai or ChatGPT?** Skip to [Claude.ai setup](#claudeai-web) or [ChatGPT setup](#chatgpt-web). No API key required.
+
+## Quick setup (API key clients)
 
 ### Step 1: Create a platform API key
 
@@ -52,38 +57,32 @@ Paste the configuration into your MCP client's config file. See the client-speci
 
 ## Client setup
 
-### VS Code (GitHub Copilot)
+### Claude.ai (Web)
 
-[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Server-0098FF?style=flat-square&logo=visualstudiocode)](vscode:mcp/install?%7B%22name%22%3A%22truesight%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fapi.truesight.goodeyelabs.com%2Fmcp%2F%22%2C%22headers%22%3A%7B%22Authorization%22%3A%22Bearer%20YOUR_API_KEY_HERE%22%7D%7D) [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Server-24bfa5?style=flat-square&logo=visualstudiocode)](vscode-insiders:mcp/install?%7B%22name%22%3A%22truesight%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fapi.truesight.goodeyelabs.com%2Fmcp%2F%22%2C%22headers%22%3A%7B%22Authorization%22%3A%22Bearer%20YOUR_API_KEY_HERE%22%7D%7D)
+Claude.ai connects via OAuth. No API key needed.
 
-Click a button to install, then replace `YOUR_API_KEY_HERE` with your platform API key. Requires VS Code 1.99+ with GitHub Copilot enabled.
+1. Go to [**Settings > Connectors**](https://claude.ai/settings/connectors?modal=add-custom-connector) in Claude.ai
+2. Enter:
+   - **Name:** Truesight
+   - **URL:** `https://api.truesight.goodeyelabs.com/mcp/`
+3. Click **Add**
+4. When prompted, sign in with your Truesight account to authorize access
+5. Enable the connector in any conversation via the **+** button
 
-Alternatively, add it manually:
+### ChatGPT (Web)
 
-1. Open VS Code and press **Cmd/Ctrl + Shift + P** to open the Command Palette
-2. Run **MCP: Add Server**
-3. Select **HTTP** as the server type
-4. Enter the URL: `https://api.truesight.goodeyelabs.com/mcp/`
-5. Give it the name `truesight`
+ChatGPT connects via OAuth. No API key needed. Requires ChatGPT Pro, Team, Enterprise, or Edu. Developer Mode must be enabled, which shows an orange border around the chat and disables memory.
 
-Or add it directly to your `.vscode/settings.json`:
+1. Go to [**Settings > Apps > Advanced settings**](https://chatgpt.com/#settings/Connectors/Advanced) and enable **Developer Mode**
+2. Click **Create app**
+3. Enter:
+   - **Name:** Truesight
+   - **MCP Server URL:** `https://api.truesight.goodeyelabs.com/mcp/`
+   - **Authentication:** OAuth
+4. Check the confirmation box and click **Create**
+5. When prompted, sign in with your Truesight account to authorize access
 
-```json
-{
-  "mcp": {
-    "servers": {
-      "truesight": {
-        "url": "https://api.truesight.goodeyelabs.com/mcp/",
-        "headers": {
-          "Authorization": "Bearer YOUR_API_KEY_HERE"
-        }
-      }
-    }
-  }
-}
-```
-
-Replace `YOUR_API_KEY_HERE` with your actual platform API key.
+> **Note:** Developer Mode must stay enabled to use custom connectors in ChatGPT. Conversations with custom connectors show an orange "Developer Mode" indicator.
 
 ### Cursor
 
@@ -118,7 +117,7 @@ claude mcp add --transport http truesight \
   --header "Authorization: Bearer YOUR_API_KEY_HERE"
 ```
 
-This adds the server to your user-level config (available in all projects). To scope it to a specific project instead, add `--scope project` before the server name — this writes the config to `.mcp.json` in your project root.
+This adds the server to your user-level config (available in all projects). To scope it to a specific project instead, add `--scope project` before the server name. This writes the config to `.mcp.json` in your project root.
 
 ### Claude Desktop
 
@@ -150,6 +149,39 @@ Claude Desktop requires [Node.js](https://nodejs.org/) and the [`mcp-remote`](ht
 4. Replace `YOUR_API_KEY_HERE` with your actual platform API key
 5. Save the file and restart Claude
 6. You should see Truesight listed as an available tool provider
+
+### VS Code (GitHub Copilot)
+
+[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Server-0098FF?style=flat-square&logo=visualstudiocode)](vscode:mcp/install?%7B%22name%22%3A%22truesight%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fapi.truesight.goodeyelabs.com%2Fmcp%2F%22%2C%22headers%22%3A%7B%22Authorization%22%3A%22Bearer%20YOUR_API_KEY_HERE%22%7D%7D) [![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Server-24bfa5?style=flat-square&logo=visualstudiocode)](vscode-insiders:mcp/install?%7B%22name%22%3A%22truesight%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fapi.truesight.goodeyelabs.com%2Fmcp%2F%22%2C%22headers%22%3A%7B%22Authorization%22%3A%22Bearer%20YOUR_API_KEY_HERE%22%7D%7D)
+
+Click a button to install, then replace `YOUR_API_KEY_HERE` with your platform API key. Requires VS Code 1.99+ with GitHub Copilot enabled.
+
+Alternatively, add it manually:
+
+1. Open VS Code and press **Cmd/Ctrl + Shift + P** to open the Command Palette
+2. Run **MCP: Add Server**
+3. Select **HTTP** as the server type
+4. Enter the URL: `https://api.truesight.goodeyelabs.com/mcp/`
+5. Give it the name `truesight`
+
+Or add it directly to your `.vscode/settings.json`:
+
+```json
+{
+  "mcp": {
+    "servers": {
+      "truesight": {
+        "url": "https://api.truesight.goodeyelabs.com/mcp/",
+        "headers": {
+          "Authorization": "Bearer YOUR_API_KEY_HERE"
+        }
+      }
+    }
+  }
+}
+```
+
+Replace `YOUR_API_KEY_HERE` with your actual platform API key.
 
 ### Windsurf
 
@@ -187,11 +219,11 @@ The Truesight MCP exposes built-in prompts for clients that support the MCP Prom
 | `bootstrap_template_evaluation_workflow` | Provision from a pre-built template and deploy quickly. |
 | `create_evaluation_workflow` | Full create-evaluation workflow for scoping, deployment, cURL generation, and verification. |
 
-For clients that don't support MCP Prompts, use the companion agent skills instead. See [Agent Skills](#agent-skills).
+For clients that do not support MCP Prompts, use the companion agent skills instead. See [Agent Skills](#agent-skills).
 
 ## Available tools
 
-Each tool requires a specific scope on your API key. If the key doesn't have the required scope, the tool will return an error.
+Each tool requires a specific scope. For API key clients, the key must include the scope listed below. For OAuth clients (Claude.ai, ChatGPT), all scopes are granted based on your account permissions. If a required scope is missing, the tool returns an error.
 
 | Tool | Description | Required scope |
 |------|-------------|----------------|
@@ -289,14 +321,22 @@ The assistant will use the appropriate Truesight MCP tools to fulfill your reque
 
 ### "Authentication required" or 401 errors
 
-- Verify your API key is correct and hasn't been revoked
-- Check that the key hasn't expired
+**API key clients:**
+
+- Verify your API key is correct and has not been revoked
+- Check that the key has not expired
 - Make sure the `Authorization` header is formatted correctly: `Bearer ts_pat_...`
+
+**OAuth clients (Claude.ai, ChatGPT):**
+
+- Try disconnecting and reconnecting the Truesight connector in your client settings
+- Make sure you are signing in with the same Truesight account that has access to your organization's resources
 
 ### "Missing required scope" errors
 
-- The tool requires a scope your key doesn't have
-- Create a new key with the needed scopes, or revoke and recreate with additional scopes
+**API key clients:** The tool requires a scope your key does not have. Create a new key with the needed scopes, or revoke and recreate with additional scopes.
+
+**OAuth clients:** All scopes are granted automatically. If you see this error, your Truesight account may not have access to the resource. Check your organization membership and permissions.
 
 ### Tools not appearing
 
@@ -315,5 +355,5 @@ The assistant will use the appropriate Truesight MCP tools to fulfill your reque
 
 - MCP connections use the same authentication and access control as the REST API
 - Your AI assistant can only access resources you have permission to view or modify
-- Scope restrictions apply: the assistant can only use tools covered by the key's scopes
-- Revoke the key from [Settings](/app/settings) to immediately disconnect all MCP clients using it
+- **API key clients:** Scope restrictions apply. The assistant can only use tools covered by the key's scopes. Revoke the key from [Settings](/app/settings) to immediately disconnect all MCP clients using it.
+- **OAuth clients:** Access is tied to your Truesight account session. To revoke access, disconnect the connector in your client settings (e.g., Settings > Connectors in Claude.ai).
