@@ -81,7 +81,7 @@ Optionally, you can designate specific columns from the dataset detail page:
 
 You must assign at least one text content column or one image URL column (or both). Image-only evaluations are supported -- if your dataset contains only images and no text content, assign just the image URL column.
 
-![Dataset Edit Details dialog showing text content and image URL column roles](/docs-images/good-1004/dataset-edit-details-column-roles.png)
+![Dataset Edit Details dialog showing text content and image URL column roles](/docs-images/dataset-edit-details-column-roles.png)
 
 ## Managing datasets
 

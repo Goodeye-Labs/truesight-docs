@@ -32,7 +32,7 @@ If you want the fastest path, start from a pre-built template on the [Dashboard]
 
 Templates are a strong starting point, but you can edit criteria, add rows, and redeploy to match your domain.
 
-![Template selection modal for pre-built evaluation templates](/docs-images/good-1004/template-selection-modal.png)
+![Template selection modal for pre-built evaluation templates](/docs-images/template-selection-modal.png)
 
 ### Guided Setup
 
@@ -46,13 +46,13 @@ Upload or select the dataset you want to evaluate. The dataset determines what c
 
 Configure the judgment columns for your expert annotations or labels. These are the columns with human assessments that Truesight will use to calibrate the evaluation.
 
-![Guided Setup step 2 showing a configured judgment column](/docs-images/good-1004/guided-setup-step-2-judgments.png)
+![Guided Setup step 2 showing a configured judgment column](/docs-images/guided-setup-step-2-judgments.png)
 
 #### 3. Review
 
 Review examples from your dataset and provide expert labels. You can toggle which data columns are visible while reviewing to focus on the content that matters.
 
-![Guided Setup step 3 review screen with unreviewed examples](/docs-images/good-1004/guided-setup-step-3-review.png)
+![Guided Setup step 3 review screen with unreviewed examples](/docs-images/guided-setup-step-3-review.png)
 
 #### 4. Finish
 
@@ -107,7 +107,7 @@ This is useful for:
 - Comparing models across providers
 - Experimenting with different criteria formulations
 
-![Leaderboard comparing staged evaluation variants and validation metrics](/docs-images/good-1004/leaderboard-variants.png)
+![Leaderboard comparing staged evaluation variants and validation metrics](/docs-images/leaderboard-variants.png)
 
 ## Example criteria
 

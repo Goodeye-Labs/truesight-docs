@@ -58,7 +58,7 @@ Organization admins can create teams from the [Teams](/app/teams) page. Each tea
 
 When you share a resource with a team, all team members gain access at the permission level you specify:
 
-![Share dialog with the AI QA Team selected](/docs-images/good-1004/share-resource-ai-qa-team.png)
+![Share dialog with the AI QA Team selected](/docs-images/share-resource-ai-qa-team.png)
 
 | Permission | What it allows |
 |------------|---------------|

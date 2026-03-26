@@ -13,7 +13,7 @@ Once signed in, you'll land on the [Dashboard](/app/dashboard), which offers fou
 - **Find what matters**: Jump into Error Analysis to discover failure patterns before you write criteria.
 - **Learn the basics**: Open the docs if you want the product tour first.
 
-![Truesight dashboard with four getting-started entry points](/docs-images/good-1004/dashboard-4-card-entrypoints.png)
+![Truesight dashboard with four getting-started entry points](/docs-images/dashboard-4-card-entrypoints.png)
 
 **Optional: Bring your own API keys (Enterprise only).** Truesight works out of the box with Managed API keys and your credit balance. Enterprise users can configure their own provider keys in [Settings](/app/settings). When configured, custom keys take priority and credits are not consumed.
 

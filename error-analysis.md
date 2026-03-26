@@ -19,7 +19,7 @@ Open Coding is the first phase. You review examples from your dataset one at a t
 3. For each example, write notes describing what you observe. Use Quick notes to quickly insert reusable note text when helpful.
 4. Move through examples at your own pace
 
-![Error Analysis annotate step with quick-note badges and drafted notes](/docs-images/good-1004/error-analysis-annotate.png)
+![Error Analysis annotate step with quick-note badges and drafted notes](/docs-images/error-analysis-annotate.png)
 
 ### What to look for
 
@@ -52,7 +52,7 @@ Axial Coding is the second phase. Here, you take the notes from Open Coding and 
 3. Name each category with a clear, descriptive label
 4. Add descriptions that explain what each category means
 
-![Error Analysis categorize step with staged categories and counts](/docs-images/good-1004/error-analysis-categorize.png)
+![Error Analysis categorize step with staged categories and counts](/docs-images/error-analysis-categorize.png)
 
 ### From notes to categories
 
