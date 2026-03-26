@@ -24,6 +24,8 @@ Platform API keys are different from the per-endpoint Live Evaluation keys (`ts_
 
 After creation, the full key is displayed once. Copy it immediately and store it securely. You will not be able to see the full key again.
 
+![Create Platform API Key dialog with the MCP preset selected](/docs-images/good-1004/api-key-create-mcp-preset.png)
+
 ## Using the key
 
 Include your platform API key in the `Authorization` header of your HTTP requests:
@@ -214,4 +216,6 @@ Error responses include a `detail` field:
 
 ## MCP integration
 
-Platform API keys are also used to authenticate MCP (Model Context Protocol) connections. After creating a key, the key reveal dialog includes a pre-filled MCP configuration you can copy directly into Claude or Cursor. See the [MCP Integration](/docs/mcp-integration) guide for setup instructions.
+Most MCP clients (Claude.ai, ChatGPT, Cursor, VS Code, and others) can connect to Truesight by signing in with your account. Platform API keys are an alternative for users who want fine-grained control over which tools are available. After creating a key, the key reveal dialog includes a pre-filled MCP configuration you can copy directly into your client. See the [MCP Integration](/docs/mcp-integration) guide for setup instructions.
+
+![Platform API key reveal dialog with the MCP configuration expanded](/docs-images/good-1004/api-key-reveal-mcp-config.png)
