@@ -136,7 +136,9 @@ Each Live Evaluation endpoint is rate-limited to **60 requests per minute** by d
 
 Each API call consumes credits from your organization's balance when using Truesight's Managed API keys. If your balance reaches zero, API calls will return a `402` error.
 
-To add credits, visit the [Usage & Balance](/app/usage) page in the sidebar. You can purchase credits instantly using preset amounts ($25, $50, $100, $250) or enter a custom amount ($5 to $1,000). Payments are processed through Stripe.
+To reduce `402` interruptions, organization admins can enable **auto-recharge** on [Usage & Balance](/app/usage). Auto-recharge can automatically purchase credits when your balance drops below a configured threshold.
+
+To add credits, visit the [Usage & Balance](/app/usage) page in the sidebar. You can purchase credits instantly using preset amounts ($25, $50, $100, $250) or enter a custom amount ($5 to $1,000). You can also configure auto-recharge settings (threshold, recharge amount, and monthly limit) from the same page. Payments are processed through Stripe.
 
 **Using your own API keys (BYOK)**: Available on the **Enterprise** plan. When configured, your keys take priority and credits are not consumed. See [Teams & Organizations](/docs/teams-organizations) for details on managing credits and API keys.
 
@@ -232,7 +234,7 @@ Before using the API, you need to activate a Live Evaluation in the platform:
 3. Select your evaluation and click **Activate** to deploy it
 4. Copy the **API key** from the credentials dialog that appears after activation
 
-The Live Evaluation captures a snapshot of your evaluation configuration at the time of activation. Changes to the original evaluation won't affect the live endpoint. To deploy updated criteria, activate a new Live Evaluation.
+The Live Evaluation captures a snapshot of your evaluation configuration at the time of activation. Changes to the original evaluation won't affect the current deployed behavior until you update the deployment. To roll out updated criteria, either promote a different variant behind the existing `live_*` endpoint or activate a new Live Evaluation.
 
 ## Beyond the evaluation endpoint
 

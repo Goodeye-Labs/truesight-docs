@@ -87,7 +87,7 @@ You must assign at least one text content column or one image URL column (or bot
 
 ### Viewing and exploring
 
-From the [Datasets](/app/datasets) page, you can see all your datasets with their row counts, column information, and creation dates. Select a dataset to view its contents, edit its settings, or use it in other features.
+From the [Datasets](/app/datasets) page, you can see all your datasets with their row counts, column information, and creation dates. Use the search bar at the top of the list to filter datasets by name. Select a dataset to view its contents, edit its settings, or use it in other features.
 
 ### Editing
 

@@ -46,6 +46,8 @@ Upload or select the dataset you want to evaluate. The dataset determines what c
 
 Configure the judgment columns for your expert annotations or labels. These are the columns with human assessments that Truesight will use to calibrate the evaluation.
 
+Once you've selected a judgment column, click **Suggest guidance** to have Truesight analyze your labeled examples and generate a draft criterion description. The suggestion opens in a review dialog where you can edit it before applying. This is especially useful when you have labeled data but haven't yet articulated what separates a pass from a fail.
+
 ![Guided Setup step 2 showing a configured judgment column](/docs-images/guided-setup-step-2-judgments.png)
 
 #### 3. Review
@@ -108,6 +110,10 @@ This is useful for:
 - Experimenting with different criteria formulations
 
 ![Leaderboard comparing staged evaluation variants and validation metrics](/docs-images/leaderboard-variants.png)
+
+### Promoting a variant to production
+
+Once you've identified a better-performing variant, you can promote it to an existing Live Evaluation without changing the endpoint URL or API key. From the [Live Evaluations](/app/live-evaluations) page, open the row action menu for the deployment you want to update and choose **Promote Variant**. Select the variant to promote and confirm. The live endpoint immediately begins evaluating against the new configuration while all existing integrations continue working uninterrupted.
 
 ## Example criteria
 

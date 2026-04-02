@@ -30,6 +30,7 @@ Truesight uses a **credit balance** system for evaluations run with Managed API 
 
 - **Included credits**: Your monthly subscription payment is credited directly to your account each billing cycle as managed AI credits.
 - **Purchasing credits**: Organization admins can buy additional credits directly from the [Usage & Balance](/app/usage) page. Choose a preset amount ($25, $50, $100, or $250) or enter a custom amount between $5 and $1,000. Purchases are processed securely through Stripe.
+- **Auto-recharge**: Organization admins can enable auto-recharge on [Usage & Balance](/app/usage) to reduce interruptions. You can set a low-balance threshold, recharge amount, and optional monthly limit. When balance drops below the threshold, Truesight attempts an automatic credit purchase using your saved billing method.
 - **BYOK (Bring Your Own Key)**: Available on the **Enterprise** plan. When you configure your own API keys (in [Settings](/app/settings) at the user level or at the [organization](/app/organization) level), those keys take priority over Managed API keys. Credits are only consumed when no custom keys are configured. Organization keys take precedence over user keys.
 
 ### Evaluation result retention
@@ -40,7 +41,7 @@ Evaluation results are retained according to your subscription plan:
 - **Pro**: 90 days
 - **Enterprise**: unlimited
 
-To monitor usage, visit the [Usage & Balance](/app/usage) page in the sidebar. It shows your current balance, a breakdown of credit allocations, and usage history by provider. Note that purchasing credits and managing billing requires organization admin privileges.
+To monitor usage, visit the [Usage & Balance](/app/usage) page in the sidebar. It shows your current balance, a breakdown of credit allocations, and usage history by provider. Organization admins can also purchase credits and configure auto-recharge from this page.
 
 ## Teams
 

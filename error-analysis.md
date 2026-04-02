@@ -4,7 +4,7 @@ Error Analysis is Truesight's structured process for discovering evaluation crit
 
 ## Why Error Analysis?
 
-Generic evaluation metrics (like BLEU or ROUGE) don't capture what matters for your specific use case. Error Analysis helps you build evaluation criteria grounded in your domain expertise by systematically reviewing your AI's actual outputs.
+Generic scores like "helpfulness" or "coherence" don't capture what matters for your specific use case. Error Analysis helps you build evaluation criteria grounded in your domain expertise by systematically reviewing your AI's actual outputs.
 
 The result is a set of well-defined categories that reflect real failure modes, not abstract metrics.
 
