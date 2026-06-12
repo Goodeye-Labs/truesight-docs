@@ -45,4 +45,8 @@ For direct MCP integration with Claude, Cursor, VS Code, and Windsurf, see the [
 
 ## License
 
-MIT
+The documentation in this repository is proprietary to Goodeye Labs and provided
+under the [Truesight Documentation License](LICENSE). You may read and use it to
+work with Truesight, allow AI and documentation tools such as Context7 to index
+it, and freely reuse the code samples. Redistributing or creating derivative
+documentation is not permitted. See [LICENSE](LICENSE) for details.
